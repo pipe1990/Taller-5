@@ -4,23 +4,31 @@
         <meta charset="UTF-8">
         <title>Create user</title>
     </head>
+    <center>
     <body>
 
         <form action="./create-user">
             <h1>Base de datos Ciudadanos de 4 Patas! :D</h1>
             <div>
-                Username: <input type="text" id="name" name="name">
+                Username: <input type="text" id="name" name="name" required>
             </div>
             <div>
-                Password: <input type="password" id="password" name="password">
+                Password:  <input type="password" id="password" name="password" required>
             </div>
             <div>
-                Email: <input type="text" id="email" name="email">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div>
-                Role: <input type="text" id="role" name="role">
+                <label for="role">Choose role:</label>
+                <select name="role" id="role">
+                    <option value="official">Official</option>
+                    <option value="owner">Owner</option>
+                    <option value="vet">Vet</option>
+                </select>
             </div>
             <input type="submit" value="Create User">
         </form>
     </body>
+    </center>
 </html>

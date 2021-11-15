@@ -1,7 +1,7 @@
 package edu.unbosque.JPATutorial.servlets;
 
 import com.google.gson.Gson;
-import edu.unbosque.JPATutorial.services.AuthorService;
+import edu.unbosque.JPATutorial.services.UserService;
 import edu.unbosque.JPATutorial.servlets.pojos.AuthorPOJO;
 
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +20,7 @@ public class ListAuthorsServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        AuthorService authorService = new AuthorService();
+        UserService authorService = new UserService();
         List<AuthorPOJO> authors =  authorService.listAuthors();
 
         String authorsJsonString = new Gson().toJson(authors);

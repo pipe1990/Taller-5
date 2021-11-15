@@ -1,6 +1,6 @@
 package edu.unbosque.JPATutorial.servlets;
 
-import edu.unbosque.JPATutorial.services.AuthorService;
+import edu.unbosque.JPATutorial.services.UserService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,11 +20,7 @@ public class CreateUserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
 
-
-
-
-
-        AuthorService authorService = new AuthorService();
+        UserService authorService = new UserService();
         authorService.saveAuthor(name);
 
         response.sendRedirect("./index.jsp");

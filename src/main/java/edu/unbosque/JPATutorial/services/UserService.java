@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class AuthorService {
+public class UserService {
 
     AuthorRepository authorRepository;
 

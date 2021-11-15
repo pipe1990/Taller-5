@@ -1,6 +1,6 @@
 package edu.unbosque.JPATutorial.servlets;
 
-import edu.unbosque.JPATutorial.services.AuthorService;
+import edu.unbosque.JPATutorial.services.UserService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +17,7 @@ public class DeleteAuthorServlet extends HttpServlet {
 
         Integer authorId = Integer.parseInt(request.getParameter("authorId"));
 
-        AuthorService authorService = new AuthorService();
+        UserService authorService = new UserService();
         authorService.deleteAuthor(authorId);
 
         response.sendRedirect("./index.jsp");
