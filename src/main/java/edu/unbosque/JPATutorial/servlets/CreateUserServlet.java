@@ -8,14 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "cretateAuthorServlet", value = "/create-author")
-public class CreateAuthorServlet extends HttpServlet {
+@WebServlet(name = "cretateUserServlet", value = "/create-user")
+public class CreateUserServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html");
 
         String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+
+
+
+
 
         AuthorService authorService = new AuthorService();
         authorService.saveAuthor(name);
