@@ -45,7 +45,7 @@ public class UserService {
 
     public Username saveUser(String name) {
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PetsDB");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         usernameRepository = new UsernameRepositoryImpl(entityManager);

@@ -2,7 +2,6 @@ package edu.unbosque.JPATutorial.servlets;
 
 import com.google.gson.Gson;
 import edu.unbosque.JPATutorial.services.UserService;
-import edu.unbosque.JPATutorial.servlets.pojos.AuthorPOJO;
 import edu.unbosque.JPATutorial.servlets.pojos.UserPOJO;
 
 import javax.servlet.annotation.WebServlet;
