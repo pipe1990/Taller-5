@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "cretateUserServlet", value = "/create-user")
+@WebServlet(name = "createUserServlet", value = "/create-user")
 public class CreateUserServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -20,8 +20,8 @@ public class CreateUserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
 
-        UserService authorService = new UserService();
-        authorService.saveAuthor(name);
+        UserService userService = new UserService();
+        userService.saveUser(name);
 
         response.sendRedirect("./index.jsp");
     }

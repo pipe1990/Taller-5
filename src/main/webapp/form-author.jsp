@@ -7,9 +7,9 @@
 </head>
 <body>
 
-<form action="./create-author">
+<form action="./create-username">
     Author name: <input type="text" id="name" name="name">
-    <input type="submit" value="Create author!">
+    <input type="submit" value="Create username!">
 </form>
 
 </body>

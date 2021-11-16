@@ -1,42 +1,41 @@
 package edu.unbosque.JPATutorial.jpa.repositories;
 
-import edu.unbosque.JPATutorial.jpa.entities.Author;
-import edu.unbosque.JPATutorial.jpa.entities.Library;
+import edu.unbosque.JPATutorial.jpa.entities.Username;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class AuthorRepositoryImpl implements AuthorRepository {
+public class UsernameRepositoryImpl implements UsernameRepository {
 
     private EntityManager entityManager;
 
-    public AuthorRepositoryImpl(EntityManager entityManager) {
+    public UsernameRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public Optional<Author> findById(Integer id) {
-        Author author = entityManager.find(Author.class, id);
+    public Optional<Username> findByUsername(String username) {
+        Username author = entityManager.find(Username.class, username);
         return author != null ? Optional.of(author) : Optional.empty();
     }
 
-    public List<Author> findAll() {
-        return entityManager.createQuery("from Author").getResultList();
+    public List<Username> findAll() {
+        return entityManager.createQuery("from Username").getResultList();
     }
 
-    public Optional<Author> findByName(String name) {
-        Author author = entityManager.createNamedQuery("Author.findByName", Author.class)
+    public Optional<Username> findByName(String name) {
+        Username username = entityManager.createNamedQuery("Author.findByName", Username.class)
                 .setParameter("name", name)
                 .getSingleResult();
-        return author != null ? Optional.of(author) : Optional.empty();
+        return username != null ? Optional.of(username) : Optional.empty();
     }
 
-    public Optional<Author> save(Author author) {
+    public Optional<Username> save(Username username) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(author);
+            entityManager.persist(username);
             entityManager.getTransaction().commit();
-            return Optional.of(author);
+            return Optional.of(username);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,8 +43,8 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     }
 
     @Override
-    public void deleteById(Integer id) {
-        Author author = entityManager.find(Author.class, id);
+    public void deleteByUsername(String username) {
+        Username author = entityManager.find(Username.class, username);
         if (author != null) {
             try {
 

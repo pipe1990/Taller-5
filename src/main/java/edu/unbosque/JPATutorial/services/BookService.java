@@ -1,9 +1,9 @@
 package edu.unbosque.JPATutorial.services;
 
-import edu.unbosque.JPATutorial.jpa.entities.Author;
+import edu.unbosque.JPATutorial.jpa.entities.Username;
 import edu.unbosque.JPATutorial.jpa.entities.Book;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepositoryImpl;
+import edu.unbosque.JPATutorial.jpa.repositories.UsernameRepository;
+import edu.unbosque.JPATutorial.jpa.repositories.UsernameRepositoryImpl;
 import edu.unbosque.JPATutorial.jpa.repositories.BookRepository;
 import edu.unbosque.JPATutorial.jpa.repositories.BookRepositoryImpl;
 
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Stateless
 public class BookService {
 
-    AuthorRepository authorRepository;
+    UsernameRepository usernameRepository;
     BookRepository bookRepository;
 
     public void saveBook(String title, String isbn, Integer authorId) {
@@ -24,13 +24,13 @@ public class BookService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        authorRepository = new AuthorRepositoryImpl(entityManager);
+        usernameRepository = new UsernameRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
 
-        Optional<Author> author = authorRepository.findById(authorId);
-        author.ifPresent(a -> {
+        Optional<Username> username = usernameRepository.findByUsername(authorId);
+        username.ifPresent(a -> {
             a.addBook(new Book(title, isbn));
-            authorRepository.save(a);
+            usernameRepository.save(a);
         });
 
         entityManager.close();

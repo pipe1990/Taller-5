@@ -25,7 +25,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Author author;
+    private Username username;
 
     @OneToOne(mappedBy = "book")
     private Edition edition;
@@ -67,12 +67,12 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Username getAuthor() {
+        return username;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthor(Username username) {
+        this.username = username;
     }
 
     public Edition getEdition() { return edition; }

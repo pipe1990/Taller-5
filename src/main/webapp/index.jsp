@@ -20,7 +20,7 @@
             <h1>Base de datos Ciudadanos de 4 Patas! :D</h1>
 
             <button onclick="location.href='./form-user.jsp';">Create User</button>
-            <button onclick="location.href='./form-author.jsp';">Create author</button>
+            <button onclick="location.href='./form-username.jsp';">Create username</button>
 
             <h3>Libraries</h3>
 
@@ -80,11 +80,11 @@
                                     cell.appendChild(action);
                                 }
 
-                                if (actions.includes('delete-author')) {
+                                if (actions.includes('delete-username')) {
                                     var cell = newRow.insertCell();
                                     var action = document.createElement('button');
-                                    action.setAttribute('onclick', 'location.href="./delete-author?authorId=' + d['authorId'] + '";');
-                                    var text = document.createTextNode('Delete author');
+                                    action.setAttribute('onclick', 'location.href="./delete-username?authorId=' + d['authorId'] + '";');
+                                    var text = document.createTextNode('Delete username');
                                     action.appendChild(text);
                                     cell.appendChild(action);
                                 }
@@ -101,8 +101,8 @@
                 // Printing libraries
                 printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name']);
 
-                // Printing authors
-                printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks'], actions = ['create-book', 'delete-author']);
+                // Printing usernames
+                printTable(elementId = 'authorsTbl', servlet = 'list-usernames', columns = ['authorId', 'name', 'numBooks'], actions = ['create-book', 'delete-username']);
 
             </script>
                 <main class="form-signing">

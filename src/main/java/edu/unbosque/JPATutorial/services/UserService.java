@@ -1,9 +1,10 @@
 package edu.unbosque.JPATutorial.services;
 
-import edu.unbosque.JPATutorial.jpa.entities.Author;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepositoryImpl;
+import edu.unbosque.JPATutorial.jpa.entities.Username;
+import edu.unbosque.JPATutorial.jpa.repositories.UsernameRepository;
+import edu.unbosque.JPATutorial.jpa.repositories.UsernameRepositoryImpl;
 import edu.unbosque.JPATutorial.servlets.pojos.AuthorPOJO;
+import edu.unbosque.JPATutorial.servlets.pojos.UserPOJO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,25 +16,26 @@ import java.util.List;
 @Stateless
 public class UserService {
 
-    AuthorRepository authorRepository;
+    UsernameRepository usernameRepository;
 
-    public List<AuthorPOJO> listAuthors() {
+    public List<UserPOJO> listUsers() {
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PetsDB");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        authorRepository = new AuthorRepositoryImpl(entityManager);
-        List<Author> authors = authorRepository.findAll();
+        usernameRepository = new UsernameRepositoryImpl(entityManager);
+        List<Username> usernames = usernameRepository.findAll();
 
         entityManager.close();
         entityManagerFactory.close();
 
-        List<AuthorPOJO> authorsPOJO = new ArrayList<>();
-        for (Author author : authors) {
-            authorsPOJO.add(new AuthorPOJO(
-                    author.getAuthorId(),
-                    author.getName(),
-                    author.getBooks().size()
+        List<UserPOJO> authorsPOJO = new ArrayList<>();
+        for (Username username : usernames) {
+            authorsPOJO.add(new UserPOJO(
+                    username.getName(),
+                    username.getPassword(),
+                    username.getEmail(),
+                    username.getRole()
             ));
         }
 
@@ -41,20 +43,20 @@ public class UserService {
 
     }
 
-    public Author saveAuthor(String name) {
+    public Username saveUser(String name) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        authorRepository = new AuthorRepositoryImpl(entityManager);
+        usernameRepository = new UsernameRepositoryImpl(entityManager);
 
-        Author author = new Author(name);
-        Author persistedAuthor = authorRepository.save(author).get();
+        Username username = new Username(name);
+        Username persistedUsername = UsernameRepository.save(username).get();
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return persistedAuthor;
+        return persistedUsername;
 
     }
 
@@ -63,8 +65,8 @@ public class UserService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        authorRepository = new AuthorRepositoryImpl(entityManager);
-        authorRepository.deleteById(authorId);
+        usernameRepository = new UsernameRepositoryImpl(entityManager);
+        usernameRepository.deleteByUsername(username);
 
         entityManager.close();
         entityManagerFactory.close();
